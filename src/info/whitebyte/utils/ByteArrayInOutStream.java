@@ -43,8 +43,8 @@ public class ByteArrayInOutStream extends ByteArrayOutputStream {
 	 * @return the ByteArrayInputStream instance
 	 */
 	public ByteArrayInputStream getInputStream() {
-		// create new ByteArrayInputStream that respect the current count
-		ByteArrayInputStream in = new ByteArrayInputStream(this.buf);
+		// create new ByteArrayInputStream that respects the current count
+		ByteArrayInputStream in = new ByteArrayInputStream(this.buf, 0, this.count);
 		
 		// set the buffer of the ByteArrayOutputStream 
 		// to null so it can't be altered anymore
