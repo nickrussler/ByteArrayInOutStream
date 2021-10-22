@@ -14,21 +14,21 @@ import java.io.ByteArrayOutputStream;
  * @author Nick Russler
  */
 public class ByteArrayInOutStream extends ByteArrayOutputStream {
-    /**
-     * Creates a new ByteArrayInOutStream. The buffer capacity is
-     * initially 32 bytes, though its size increases if necessary.
-     */
+	/**
+	* Creates a new ByteArrayInOutStream. The buffer capacity is
+	* initially 32 bytes, though its size increases if necessary.
+	*/
 	public ByteArrayInOutStream() {
 		super();
 	}
 	
-    /**
-     * Creates a new ByteArrayInOutStream, with a buffer capacity of
-     * the specified size, in bytes.
-     *
-     * @param   size   the initial size.
-     * @exception  IllegalArgumentException if size is negative.
-     */
+	/**
+	* Creates a new ByteArrayInOutStream, with a buffer capacity of
+	* the specified size, in bytes.
+	*
+	* @param   size   the initial size.
+	* @exception  IllegalArgumentException if size is negative.
+	*/
 	public ByteArrayInOutStream(int size) {
 		super(size);
 	}
@@ -51,5 +51,17 @@ public class ByteArrayInOutStream extends ByteArrayOutputStream {
 		this.buf = null;
 		
 		return in;
+	}
+
+	@Override    
+	public void write(final byte[] bytes) throws IOException {
+        	if (buf == null) {
+	            throw new IllegalStateException("The " 
+			+ getClass().getSimpleName()
+			+ " instance has been turned to a "
+			+ ByteArrayInputStream.class.getSimpleName()
+			+ " already. Can't write anything on it anymore!");
+		}
+		super.write(bytes);
 	}
 }
